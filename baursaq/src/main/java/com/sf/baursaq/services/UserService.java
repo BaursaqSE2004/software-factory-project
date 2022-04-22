@@ -17,6 +17,7 @@ public class UserService {
     public boolean createUser(User user){
         try{
             if(!ValidateHelper.validate(user.getUsername())) return false;
+            if(userRepository.findByUsername(user.getUsername()) != null) return false;
             if(!user.getPassword().equals(user.getPassword2())) return false;
             user.setPassword2(null);
             userRepository.save(user);
@@ -34,6 +35,18 @@ public class UserService {
         }catch (Exception e){
             return false;
         }
+    }
+
+    public User findById(Long id){
+        return userRepository.findById(id).orElse(null);
+    }
+    public User findByUsername(String username){
+        return userRepository.findByUsername(username);
+    }
+
+    public User returnUser(User user){
+        User userRequest = userRepository.findByUsername(user.getUsername());
+        return userRequest;
     }
 
 }

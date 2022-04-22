@@ -2,6 +2,8 @@ package com.sf.baursaq.controllers;
 
 import com.sf.baursaq.entity.User;
 import com.sf.baursaq.services.UserService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +37,8 @@ public class UserController {
     public String signInFormPost(User user){
         boolean result = userService.login(user);
         if (!result) return "bad";
-        return "user-recipe-list";
+        User userRequest = userService.returnUser(user);
+        return "redirect:/user/cabinet/" + userRequest.getUser_id();
     }
 
     @GetMapping("/sign-up-form")
@@ -46,6 +49,14 @@ public class UserController {
     public String signUpFormPost(User user){
         boolean result = userService.createUser(user);
         if (!result) return "bad";
-        return "user-recipe-list";
+        return "redirect:/user/cabinet/" + user.getUser_id();
     }
+
+    @GetMapping("/cabinet/{id}")
+    public String cabinet(@PathVariable("id") Long user_id, Model model){
+        User user = userService.findById(user_id);
+        model.addAttribute("user", user);
+        return "cabinet";
+    }
+
 }
