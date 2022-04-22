@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Start Page</title>
+</head>
+<body>
+<form th:method="GET" th:action="@{/user/guest-recipe-list}">
+    <button type="submit">Enter as a guest</button>
+    <p>Guest restricted functionality: you cannot add your own recipes, leave comments and like recipes</p>
+</form>
+<form th:method="GET" th:action="@{/user/sign-in-form}">
+    <button type="submit">Sign-in</button>
+</form>
+<form th:method="GET" th:action="@{/user/sign-up-form}">
+    <button type="submit">Sign-up</button>
+</form>
+</body>
+</html>

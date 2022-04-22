@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign-up Form</title>
+</head>
+<body>
+<form th:method="POST" th:object="${user}" th:action="@{/user/sign-up-form}">
+    <div>
+        <input type="text" id="username" name="username" placeholder="username" field="*{username}"/>
+        <input type="text" id="password" name="password" placeholder="password" field="*{password}"/>
+        <input type="text" id="password2" name="password2" placeholder="repeat password" field="*{password2}"/>
+        <input type="text" id="name" name="name" placeholder="name" field="*{name}"/>
+        <input type="text" id="surname" name="surname" placeholder="surname" field="*{surname}"/>
+        <button type="submit">Register</button>
+    </div>
+</form>
+</body>
+</html>
