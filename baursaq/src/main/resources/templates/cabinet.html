@@ -38,8 +38,8 @@
                 <td th:text="${recipe.timestamp}"></td>
                 <td th:text="${recipe.likes}"></td>
                 <td><a href="">View</a></td>
-                <td><a href="">Update</a></td>
-                <td><a th:href="@{/delete-recipe/{id}/{title}(user_id=${user.id},content=${recipe.title})}">Delete</a></td>
+                <td><a th:href="@{/recipe/update-recipe/{id}/{i}(id=${recipe.recipeId},i=${user.id})}">Update</a></td>
+                <td><a th:href="@{/recipe/delete-recipe/{id}/{title}(id=${user.id},title=${recipe.title})}">Delete</a></td>
             </tr>
         </table>
     </div>

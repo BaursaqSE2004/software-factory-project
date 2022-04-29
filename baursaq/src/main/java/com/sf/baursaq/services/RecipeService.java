@@ -49,12 +49,24 @@ public class RecipeService {
         }
     }
 
+    public Recipe findById(Long id){
+        return recipeRepository.findById(id).orElse(null);
+    }
+
+    public void updateRecipe(Recipe recipe, Long idd){
+        Recipe recipe1 = recipeRepository.findById(idd).orElse(null);
+        recipe1.setTimestamp(new Date());
+        recipe1.setContent(recipe.getContent());
+        recipe1.setInst(recipe.getInst());
+        recipeRepository.save(recipe1);
+    }
+
     public void deleteRecipe(Long userId, String title){
         Optional<User> userOptional = userRepository.findById(userId);
         User user = userOptional.orElse(null);
         Recipe recipe = recipeRepository.findByTitle(title);
         user.getRecipes().remove(recipe);
-        recipeRepository.deleteByTitle(title);
+        recipeRepository.delete(recipe);
     }
 
 }

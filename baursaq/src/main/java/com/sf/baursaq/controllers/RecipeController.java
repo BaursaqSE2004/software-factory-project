@@ -49,7 +49,7 @@ public class RecipeController {
     public String createRecipeForm(@PathVariable("id") Long userId, Model model){
         User user = userService.findById(userId);
         model.addAttribute("user", user);
-        model.addAttribute("note", new Recipe());
+        model.addAttribute("recipe", new Recipe());
         return "recipe-creation";
     }
     @PostMapping("/recipe-creation/{id}")
@@ -57,6 +57,20 @@ public class RecipeController {
         boolean result = recipeService.create(recipe, userId);
         if (result) return "redirect:/user/cabinet/" + userId;
         else return "bad";
+    }
+
+    @GetMapping("/update-recipe/{id}/{userId}")
+    public String updateRecipeForm(@PathVariable("id") Long id, @PathVariable("userId") Long userId, Model model){
+        Recipe recipe = recipeService.findById(id);
+        model.addAttribute("recipe", recipe);
+        model.addAttribute("idd", id);
+        model.addAttribute("id", userId);
+        return "recipe-update-form";
+    }
+    @PostMapping("/update-recipe/{id}/{idd}")
+    public String updateRecipe(Recipe recipe, @PathVariable("id") Long userId, @PathVariable("idd") Long idd){
+        recipeService.updateRecipe(recipe, idd);
+        return "redirect:/user/cabinet/" + userId;
     }
 
     @GetMapping("delete-recipe/{userId}/{title}")

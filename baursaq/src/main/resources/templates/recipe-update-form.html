@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe update</title>
+</head>
+<body>
+<form th:action="@{/recipe/update-recipe/{id}/{idd}(id=${id},idd=${idd})}" th:object="${recipe}" th:method="POST">
+    <label for="content">Content</label>
+    <input type="text" field="*{content}" id="content" placeholder="Content" name="content">
+    <label for="inst">Instructions</label>
+    <input type="text" field="*{inst}" id="inst" placeholder="Instructions" name="inst">
+    <input type="submit" value="Update Recipe">
+</form>
+</body>
+</html>
