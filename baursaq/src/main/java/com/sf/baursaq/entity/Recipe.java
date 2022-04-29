@@ -14,12 +14,14 @@ import java.util.List;
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long recipe_id;
-    private String recipe_title;
-    private String recipe_content;
-    private String recipe_inst;
-    private Date recipe_timestamp;
-    private Long recipe_likes;
+    private Long recipeId;
+    private String title;
+    @Column(columnDefinition = "TEXT")
+    private String content;
+    private String inst;
+    private Date timestamp;
+    private Long likes;
+    private String author;
     @OneToMany (cascade=CascadeType.ALL)
     private List<Comm> comments;
 }

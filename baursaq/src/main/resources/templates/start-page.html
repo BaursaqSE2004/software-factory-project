@@ -5,13 +5,14 @@
     <title>Start Page</title>
 </head>
 <body>
-<form th:method="GET" th:action="@{/user/guest-recipe-list}">
+<form th:method="GET" th:action="@{/recipe/guest-recipe-list}">
     <button type="submit">Enter as a guest</button>
     <p>Guest restricted functionality: you cannot add your own recipes, leave comments and like recipes</p>
 </form>
 <form th:method="GET" th:action="@{/user/sign-in-form}">
     <button type="submit">Sign-in</button>
 </form>
+<br>
 <form th:method="GET" th:action="@{/user/sign-up-form}">
     <button type="submit">Sign-up</button>
 </form>

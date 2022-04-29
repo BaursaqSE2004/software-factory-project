@@ -1,6 +1,8 @@
 package com.sf.baursaq.controllers;
 
 import com.sf.baursaq.entity.User;
+import com.sf.baursaq.services.CommService;
+import com.sf.baursaq.services.RecipeService;
 import com.sf.baursaq.services.UserService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.Hidden;
@@ -12,10 +14,16 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
     private UserService userService;
+    private RecipeService recipeService;
+    private CommService commService;
+
     @Autowired
-    public UserController(UserService userService){
+    public UserController(UserService userService, RecipeService recipeService, CommService commService){
         this.userService = userService;
+        this.recipeService = recipeService;
+        this.commService = commService;
     }
 
     @GetMapping("/start-page")
@@ -23,22 +31,16 @@ public class UserController {
         return "start-page";
     }
 
-    @GetMapping("/guest-recipe-list")
-    public String guestRecipeList(){
-        return "guest-recipe-list";
-    }
-
     @GetMapping("/sign-in-form")
     public String signInForm(){
         return "sign-in-form";
     }
-
     @PostMapping("/sign-in-form")
     public String signInFormPost(User user){
         boolean result = userService.login(user);
         if (!result) return "bad";
         User userRequest = userService.returnUser(user);
-        return "redirect:/user/cabinet/" + userRequest.getUser_id();
+        return "redirect:/user/cabinet/" + userRequest.getId();
     }
 
     @GetMapping("/sign-up-form")
@@ -49,14 +51,20 @@ public class UserController {
     public String signUpFormPost(User user){
         boolean result = userService.createUser(user);
         if (!result) return "bad";
-        return "redirect:/user/cabinet/" + user.getUser_id();
+        return "redirect:/user/cabinet/" + user.getId();
     }
 
     @GetMapping("/cabinet/{id}")
-    public String cabinet(@PathVariable("id") Long user_id, Model model){
-        User user = userService.findById(user_id);
+    public String cabinet(@PathVariable("id") Long userId, Model model){
+        User user = userService.findById(userId);
         model.addAttribute("user", user);
         return "cabinet";
+    }
+
+    @GetMapping("delete/{username}")
+    public String deleteUserByUsername(@PathVariable("username") String username){
+        userService.deleteUser(username);
+        return "redirect:/user/start-page";
     }
 
 }

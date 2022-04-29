@@ -2,9 +2,30 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>User Recipe List</title>
+    <title>Guest Recipe List</title>
 </head>
 <body>
 <h1>USER RECIPE LIST</h1>
+<table border="5px">
+    <thead>
+    <tr>
+        <th>author</th>
+        <th>title</th>
+        <th>date</th>
+        <th>likes</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="recipe : ${recipes}">
+        <td th:text="${recipe.author}"></td>
+        <td th:text="${recipe.title}"></td>
+        <td th:text="${recipe.timestamp}"></td>
+        <td th:text="${recipe.likes}"></td>
+        <td><a href="">View</a></td>
+    </tr>
+    </tbody>
+</table>
+<p><a th:href="@{/user/cabinet/{i}(i=${id})}">My cabinet</a></p>
+<p><a href="/user/start-page">Log Out</a></p>
 </body>
 </html>

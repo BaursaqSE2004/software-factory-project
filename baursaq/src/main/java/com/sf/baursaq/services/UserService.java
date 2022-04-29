@@ -49,4 +49,9 @@ public class UserService {
         return userRequest;
     }
 
+    public boolean deleteUser(String username){
+        userRepository.deleteByUsername(username);
+        return true;
+    }
+
 }
