@@ -21,7 +21,7 @@
         <td th:text="${recipe.title}"></td>
         <td th:text="${recipe.timestamp}"></td>
         <td th:text="${recipe.likes}"></td>
-        <td><a href="">View</a></td>
+        <td><a th:href="@{/recipe/recipe-page-restricted/{id}(id=${recipe.recipeId})}">View</a></td>
     </tr>
     </tbody>
 </table>

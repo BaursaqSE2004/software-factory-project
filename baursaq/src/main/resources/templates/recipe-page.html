@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe page</title>
+</head>
+<body>
+<h2>Title</h2>
+<p th:text="${recipe.title}"></p>
+<h2>Author</h2>
+<p th:text="${recipe.author}"></p>
+<h2>Content</h2>
+<p th:text="${recipe.content}"></p>
+<h2>Instruction</h2>
+<p th:text="${recipe.inst}"></p>
+<h2>Date</h2>
+<p th:text="${recipe.timestamp}"></p>
+<h2>Likes</h2>
+<p th:text="${recipe.likes}"></p> <a th:href="@{/recipe/set-like/{id}(id=${recipe.recipeId})}">set a like</a>
+</body>
+</html>

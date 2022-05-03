@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -77,6 +78,27 @@ public class RecipeController {
     public String deleteRecipe(@PathVariable("userId") Long userId, @PathVariable("title") String title){
         recipeService.deleteRecipe(userId, title);
         return "redirect:/user/cabinet/" + userId;
+    }
+
+    @GetMapping("recipe-page/{id}")
+    public String recipe(Model model, @PathVariable("id") Long recipeId){
+        Recipe recipe = recipeService.findById(recipeId);
+        model.addAttribute("recipe", recipe);
+        return "recipe-page";
+    }
+
+    @GetMapping("recipe-page-restricted/{id}")
+    public String recipeRestricted(Model model, @PathVariable("id") Long recipeId){
+        Recipe recipe = recipeService.findById(recipeId);
+        model.addAttribute("recipe", recipe);
+        return "recipe-page-restricted";
+    }
+
+    @GetMapping("set-like/{id}")
+    public String setLike(@PathVariable("id") Long id, HttpServletRequest request){
+        recipeService.setLike(id);
+        String referer = request.getHeader("Referer");
+        return "redirect:"+ referer;
     }
 
 }

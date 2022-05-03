@@ -61,6 +61,12 @@ public class RecipeService {
         recipeRepository.save(recipe1);
     }
 
+    public void setLike(Long id){
+        Recipe recipe = recipeRepository.findById(id).orElse(null);
+        recipe.setLikes(recipe.getLikes() + 1L);
+        recipeRepository.save(recipe);
+    }
+
     public void deleteRecipe(Long userId, String title){
         Optional<User> userOptional = userRepository.findById(userId);
         User user = userOptional.orElse(null);
