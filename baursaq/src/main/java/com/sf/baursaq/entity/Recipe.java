@@ -18,6 +18,7 @@ public class Recipe {
     private String title;
     @Column(columnDefinition = "TEXT")
     private String content;
+    @Column(columnDefinition = "TEXT")
     private String inst;
     private Date timestamp;
     private Long likes;
