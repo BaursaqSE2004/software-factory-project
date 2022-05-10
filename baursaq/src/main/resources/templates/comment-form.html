@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Comment form</title>
+</head>
+<body>
+
+<form th:action="@{/comm/comm-form/{id}(id=${recipe.recipeId})}" th:method="post">
+    <label for="commAuthor">Author</label>
+    <input type="text" field="${comm.commAuthor}" id="commAuthor" name="commAuthor" placeholder="Author">
+    <label for="commContent">Content</label>
+    <input type="text" field="${comm.commContent}" id="commContent" name="commContent" placeholder="Content">
+    <input type="submit" value="Create Comment">
+</form>
+</body>
+</html>
