@@ -101,4 +101,19 @@ public class RecipeController {
         return "redirect:"+ referer;
     }
 
+    @GetMapping("/banner1")
+    public String firstBanner(){
+        return "banner1";
+    }
+
+    @GetMapping("/banner2")
+    public String secondBanner(){
+        return "banner2";
+    }
+
+    @GetMapping("/banner3")
+    public String thirdBanner(){
+        return "banner3";
+    }
+
 }

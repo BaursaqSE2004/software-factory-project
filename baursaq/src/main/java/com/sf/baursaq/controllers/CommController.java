@@ -2,13 +2,12 @@ package com.sf.baursaq.controllers;
 
 import com.sf.baursaq.entity.Comm;
 import com.sf.baursaq.entity.Recipe;
-import com.sf.baursaq.entity.User;
 import com.sf.baursaq.services.CommService;
 import com.sf.baursaq.services.RecipeService;
 import com.sf.baursaq.services.UserService;
+import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,5 +42,4 @@ public class CommController {
         if (result) return "redirect:/recipe/recipe-page/" + id;
         else return "bad";
     }
-
 }

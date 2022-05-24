@@ -23,7 +23,6 @@ public class CommService {
         this.recipeRepository = recipeRepository;
         this.commRepository = commRepository;
     }
-
     public boolean create(Comm comm, Long recipeId){
         Comm comm1 = comm;
         comm1.setCommTimestamp((new Date()));
@@ -39,5 +38,4 @@ public class CommService {
         recipeRepository.save(recipe);
         return true;
     }
-
 }

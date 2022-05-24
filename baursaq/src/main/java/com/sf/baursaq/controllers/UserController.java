@@ -67,4 +67,16 @@ public class UserController {
         return "redirect:/user/start-page";
     }
 
+    @GetMapping("/contacts")
+    public String contactPage(){
+        return "contacts";
+    }
+
+    @GetMapping("/faq")
+    public String faqPage(){
+        return "FAQ";
+    }
+
+
+
 }
